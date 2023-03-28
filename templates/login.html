@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+<meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+    <title></title>
+<!-- Include the Borderless theme -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css" media="all" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.css') }}" type="text/css" media="all" />
+
+<style type="text/css" media="all">
+  body{background-image: url("../static/source/IMG-20211212-081951-825.jpg");background-repeat: no-repeat;background-size:100%;animation:none;transition:all .3s ease;}
+</style>
+
+  </head>
+  <body>
+<script src="{{ url_for('static', filename='script/sweetalert2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='script/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='script/jquery-3.6.3.min.js')}}"></script>
+
+<script type="text/javascript" charset="utf-8">
+Swal.fire({//TAMPILAN AWAL
+  imageUrl: "../static/source/mimibubu.gif",
+  imageWidth: 100,
+  imageHeight: 100,
+  text: "Hai Dude,untuk membuat Q&A Mu, Aku Butuh Nama Dan Wa Kamu Untuk Buat DataBase😊",
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'lanjutkan'
+}).then((result) => {//JIKA USER MENEKAN CONFIRM
+  if (result.isConfirmed) {
+    mulai();//MEMANGGIL CONTENT
+  }
+})
+</script>
+
+<script type="text/javascript">
+async function mulai(){//FUNCTION MEMULAI CONTENT
+var { value: nama } = await Swal.fire({//Variable Swal Mengambil Nama
+  title: 'Nama Kamu?',
+  input: 'text',
+  confirmButtonText: 'Lanjut',
+  showCancelButton: false,
+  inputValidator: (value) => {//MENGECEK INPUT
+    if (!value) {
+      return 'Nama harus diisi!'//Jika Input Tidak Di isi
+    } else if (/\s/.test(value)) {//Jika Input Mengandung Spasi
+      return 'Nama tidak boleh mengandung spasi!Gunakan Huruf Besar Pada Awalan Kata Untuk Spasi Contoh:(JangSantuy)'
+    }
+  }//akhir dari inputValidator
+});//akhir dari variable swal nama
+
+if (nama) { // ifjika input nama terisi langsung ke input WhatsApp
+window.nama = nama;
+var { value: WhatsApp } = await Swal.fire({//variable swal Input Wa
+  title: 'Nomer WhatsApp',
+  input: 'text',
+  confirmButtonText: 'Lanjut',
+  showCancelButton: false,
+  inputAttributes: {
+  maxlength: 14,
+  minlength: 10
+},
+inputValidator: (value) => {//mengecek input Wa
+  if (!value) {//mengecek input jika tidak terisi
+    return 'Aku Butuh Wa Kamu Untuk Mengirim Q Nya🙏'
+  } else if (value && value.length < 11) {//mengecek input kurang dari 11 karakter
+    return 'Tulis Yang Bener Ajig😑'
+  }
+}//akhir inputValidator
+});//akhir dari variable swal Wa
+
+if (WhatsApp) { // jika input WhatsApp confirmasi
+window.WhatsApp = WhatsApp;
+// variabel konfirmasi semua input
+var { value: confirmasi } = await Swal.fire({
+  title: 'konfirmasi?',
+  imageUrl: "../static/source/bearlaptop.gif",
+  imageWidth: 150,
+  imageHeight: 150,
+  html: `<p>Nama Kamu: ${nama}<br>WhatsApp Kamu: ${WhatsApp} </p>`,
+  confirmButtonText: 'Submit',
+  showCancelButton: true,
+});//akhir variable confirmasi
+
+if (confirmasi) { // jika confirmasi button di click
+// kode untuk mengirim nilai input nama dan WhatsApp ke Flask menggunakan AJAX
+$.ajax({
+  url: '/input',
+  type: 'POST',
+  data: { //mengambil data input nama dan wa
+    'inputValueNama': nama,
+    'inputValueWa': WhatsApp
+},//akhir dari mengambil data input
+success: function(response) { //jika success terpost
+Swal.fire({//menampilkan swal sukses
+  imageUrl: "../static/source/bearlaptop.gif",
+  imageWidth: 150,
+  imageHeight: 150,
+  text: 'DatabBase Mu berhasil di buatkan, kini klik lanjutkan untuk mendapatkan /mengcopy link Q&A mu ',
+}).then(function(){//melanjutkan ke swal copylink
+  let text = `http://127.0.0.1:5004/question/${nama}`;//variabel link
+  let quote = "Hey Cuy Gua Lagi Bikin Anonymous QnA Nih,Click Link Dan Isi QnA nya Oke😉";//variable quotes
+  navigator.clipboard.writeText(text).then(function() {//Function salin link
+    Swal.fire({//swal allert success copylink
+      icon: 'success',
+      input:"text",
+      inputValue:`${text}`,
+      inputAttributes: {disabled: true},
+      text: `link mu berhasil di copy sekarang share ke teman teman kamu atau click lanjutkan untuk  otomatis mengshare nya ke status/story social media kamu`,
+      showConfirmButton: "lanjutkan"
+    }).then(function(){//melanjutkan ke swal share link
+      Swal.fire({//swal share
+        html:`<p>Pilih Icon Untuk Share Ke Story/Status SosMed Mu</p><a href="https://wa.me/?text=${text}%0A%0A${quote}"><i class="fa fa-whatsapp" style="color: red;font-size :30px;"><p style="font-size:10px;">share to Status WA</p></i></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.instagram.com/stories/create/?text=${text}%0A%0A${quote}"><i class="fa fa-instagram" style="color: red;font-size :30px;"><p style="font-size:10px;">share to Story IG</p></i></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://www.facebook.com/stories/create/?text=${text}%0A%0A${quote}"><i class="fa fa-facebook" style="color: red;font-size :30px;"><p style="font-size:10px;">share to Story FB</p></i></a>`,
+            animation : true,
+            showConfirmButton: false,
+      })//akhir swal share
+    });//akhir function swal share
+  });//akhir function copy link
+});//akhir function melanjutkan ke copylink
+  
+}//akhir function respon ajax
+})//akhir ajax
+}//akhir if confirmasi
+}//akhir dari if WhatsApp 
+else { // else dari if WhatsApp jika input WhatsApp kosong
+await Swal.fire('ups input tidak boleh kosong, ya!');
+mulai();//mengembalikan ke awal
+}
+} else { // else dari if nama jika input nama kosong
+await Swal.fire('ups input tidak boleh kosong, ya!');
+mulai();//mengembalikan ke awal
+}
+}//akhir function mulai
+
+</script>
+
+
+  </body>
+</html>
+  
