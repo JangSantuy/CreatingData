@@ -1,0 +1,29 @@
+@keyframes fanim {0% {background-position: 0% 0%;}25% {background-position: 100% 100%;} 50% {background-position: 0% 100%;} 75% {background-position: 50% 50%;} 100% {background-position: 0% 0%;}}
+@keyframes leaves {0% {transform: scale(1);} 100% {transform: scale(.90);}} .image .degdeg{animation: leaves 1s ease-in-out infinite alternate;-webkit-animation: leaves 1s ease-in-out infinite alternate;}
+body{background-color:#000;font-family: 'Shippori Antique', sans-serif;padding: 15px}body::before{content:"\00A9  linktr.ee/rayyarr";color:white;opacity:.2;font-size:5px;position:absolute;bottom:25px;left:calc(50vw - 22px);} a{text-decoration:none;}
+body{user-select:none;-moz-user-select:none;-ms-user-select:none;-khtml-user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#bodyblur{display:block;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:2;transition:all 1s ease;opacity:0;visibility:hidden;-webkit-backdrop-filter:blur(5px); backdrop-filter:blur(5px);}
+.button:hover, #subkonten > * label:hover{opacity:.4;}
+#fotoloveu, #ftawal{opacity:0;text-align:center;width:100%;height:100px;transition:all 1s ease;}
+#fotoloveu > *, #ftawal > *{display:flex;align-items:center;justify-content:center;margin-bottom:20px;font-weight:700;font-size:15px;text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.4);color:white} #sp2{font-size:17px;} #sp3{font-size:14px;}
+#fotoloveu img, #ftawal img{border-radius:4px;background:#fff;padding:3px;transition:all .3s ease;}
+#tombKlik, #tombWA{position:relative;opacity:0;visibility:hidden;transition:all .3s ease;display:flex;justify-content:center;align-items:center;list-style:none}
+.icon{flex-shrink:0; display:inline-block;margin-right:8px; width:18px;height:18px; background-size:cover;background-repeat:no-repeat;background-position:center}
+.icon.whatsapp{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23fefefe'><g><path d='M16,2A13,13,0,0,0,8,25.23V29a1,1,0,0,0,.51.87A1,1,0,0,0,9,30a1,1,0,0,0,.51-.14l3.65-2.19A12.64,12.64,0,0,0,16,28,13,13,0,0,0,16,2Zm0,24a11.13,11.13,0,0,1-2.76-.36,1,1,0,0,0-.76.11L10,27.23v-2.5a1,1,0,0,0-.42-.81A11,11,0,1,1,16,26Z'/><path d='M19.86,15.18a1.9,1.9,0,0,0-2.64,0l-.09.09-1.4-1.4.09-.09a1.86,1.86,0,0,0,0-2.64L14.23,9.55a1.9,1.9,0,0,0-2.64,0l-.8.79a3.56,3.56,0,0,0-.5,3.76,10.64,10.64,0,0,0,2.62,4A8.7,8.7,0,0,0,18.56,21a2.92,2.92,0,0,0,2.1-.79l.79-.8a1.86,1.86,0,0,0,0-2.64Zm-.62,3.61c-.57.58-2.78,0-4.92-2.11a8.88,8.88,0,0,1-2.13-3.21c-.26-.79-.25-1.44,0-1.71l.7-.7,1.4,1.4-.7.7a1,1,0,0,0,0,1.41l2.82,2.82a1,1,0,0,0,1.41,0l.7-.7,1.4,1.4Z'/></g></svg>")}
+.icon.instagram{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23fefefe'><path d='M22,3H10a7,7,0,0,0-7,7V22a7,7,0,0,0,7,7H22a7,7,0,0,0,7-7V10A7,7,0,0,0,22,3Zm5,19a5,5,0,0,1-5,5H10a5,5,0,0,1-5-5V10a5,5,0,0,1,5-5H22a5,5,0,0,1,5,5Z'></path><path d='M16,9.5A6.5,6.5,0,1,0,22.5,16,6.51,6.51,0,0,0,16,9.5Zm0,11A4.5,4.5,0,1,1,20.5,16,4.51,4.51,0,0,1,16,20.5Z'></path><circle cx='23' cy='9' r='1'></circle></svg>")}
+.icon.telegram{background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='%23fefefe'><path d='M24,28a1,1,0,0,1-.62-.22l-6.54-5.23a1.83,1.83,0,0,1-.13.16l-4,4a1,1,0,0,1-1.65-.36L8.2,18.72,2.55,15.89a1,1,0,0,1,.09-1.82l26-10a1,1,0,0,1,1,.17,1,1,0,0,1,.33,1l-5,22a1,1,0,0,1-.65.72A1,1,0,0,1,24,28Zm-8.43-9,7.81,6.25L27.61,6.61,5.47,15.12l4,2a1,1,0,0,1,.49.54l2.45,6.54,2.89-2.88-1.9-1.53A1,1,0,0,1,13,19a1,1,0,0,1,.35-.78l7-6a1,1,0,1,1,1.3,1.52Z'></path></svg>")}
+
+.button{margin-top:10px;transition:all .2s ease;display:inline-flex;align-items:center;padding:5px 8px;outline:0;border:0; border-radius:5px;line-height:20px; color:#fefefe;background:rgba(0, 0, 0, .5);font-size:20px;white-space:nowrap;overflow:hidden;max-width:100%}
+.button.whatsapp{font-size:12px;border-radius:15px;margin-top:100px;padding:10px 15px;background-color:#199046}
+
+#konten{z-index:3;position:relative;top:-50px;transition:all 1s ease;}
+#subkonten{opacity:0;transition:all 1s ease;}
+
+.catatan{position:relative;padding:16px 50px 16px 50px; background:none;color:#3c4043; font-size:1rem;line-height:1.6em;border-radius:10px;overflow:hidden}
+.catatan::after{content:'\002A';font-family: sans-serif;position:absolute;left:9px;top:4px; font-size:16px; min-width:15px;text-align:center} 
+.catatan.sek{text-align:center;line-height: 200%;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);background:rgba(0, 0, 0, 0.6);color:white} 
+.catatan.sek::after{content:attr(data-text); /*content:'\0021'*/} /* .catatan.sek::after{opacity:.5} */
+#spasi::before{content:"\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0\00a0"}
+
+.fa-heart {opacity:.6;color:#DF0089;font-size: 30px;width:18px;height:18px;position: absolute;animation:  heartMove linear 1;top: -10vh;z-index: 4;}
+@keyframes heartMove {0%{transform: translateY(-10vh) ;} 100%{transform: translateY(100vh) ;}}
